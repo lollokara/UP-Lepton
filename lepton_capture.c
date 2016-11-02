@@ -32,7 +32,7 @@ main(int argc, char **argv)
 	int i;
 	uint8_t checkByte = 0x0f;
 	mraa_gpio_write(cs, 1);
-	usleep(50000);
+	usleep(60000); //play around for stability
 	mraa_gpio_write(cs, 0);
     while((checkByte & 0x0f) == 0x0f && isrunning){
 		if(recv)
