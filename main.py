@@ -36,7 +36,7 @@ def record():
     camera=VideoCamera()
     frame = camera.get_frame()
     render_template('rec.html')
-    fourcc = cv2.cv.CV_FOURCC(*'X264')
+    fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
     video = cv2.VideoWriter('video.avi',fourcc,5,(800,600))
     while True:
         render_template('rec.html')
