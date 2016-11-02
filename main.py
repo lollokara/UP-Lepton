@@ -35,10 +35,11 @@ def video_feed():
 def record():
     camera=VideoCamera()
     frame = camera.get_frame()
+    render_template('rec.html')
     height , width , layers =  frame.shape
     video = cv2.VideoWriter('video.avi',cv2.cv.CV_FOURCC('3','I','V','D'),5,(width,height))
-    render_template('rec.html')
     while True:
+        render_template('rec.html')
         frame = camera.get_frame()
         video.write(frame)
         if request.method == 'POST':
