@@ -12,7 +12,7 @@ from camera import VideoCamera
 from PIL import Image
 import subprocess
 import cv2
-
+import mraa
 app = Flask(__name__)
 
 @app.route('/')
@@ -31,23 +31,26 @@ def gen(camera):
 def video_feed():
     return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-@app.route('/index')
-def rec():
-    return render_template('rec.html')
 
-@app.route('/rec',methods = ['POST', 'GET'])
+@app.route('/rec')
 def record():
     camera=VideoCamera()
     frame = camera.get_frame()
     fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
     video = cv2.VideoWriter('video.avi',fourcc,5,(800,600))
+    print("recording")
+    ledstate=0
+    led=mraa.Gpio(4)
+    led.dir(mraa.DIR_OUT)
     while True:
+        if ledstate == 0:
+            led.write(1)
+            ledstate=1
+        else:
+            led.write(0)
+            ledstate=0
         frame = camera.get_frame()
-        print("loooooooping")
         video.write(frame)
-        if request.method == 'GET':
-            video.release()
-            return render_template("index.html")
 
 
 if __name__ == '__main__':
