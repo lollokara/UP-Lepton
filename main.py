@@ -31,9 +31,20 @@ def gen(camera):
 def video_feed():
     return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-@app.route('/rec')
+@app.route('/rec',methods = ['POST', 'GET'])
 def record():
-    return render_template('rec.html')
+    camera=VideoCamera()
+    frame = camera.get_frame()
+    height , width , layers =  img1.shape
+    video = cv2.VideoWriter('video.avi',CV_FOURCC('3','I','V','D'),5,(width,height))
+    render_template('rec.html')
+    while True:
+        frame = camera.get_frame()
+        video.write(frame)
+        if request.method == 'POST':
+            break
+    video.release()
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)

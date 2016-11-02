@@ -28,7 +28,7 @@ class VideoCamera(object):
         (minVal, maxVal, minLoc, maxLoc) = cv2.minMaxLoc(gray)
         image = cv2.applyColorMap(image, cv2.COLORMAP_JET)
         PixelTemp= 0.0463*MaxVal-349.44
-        print(PixelTemp)
+        #print(PixelTemp)
         cv2.circle(image, maxLoc, 10, (255, 255, 255), 3)
         PixelTemp=round(PixelTemp,2)
         cv2.putText(image,str(PixelTemp)+"C",(680,590),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
