@@ -1,3 +1,9 @@
+/*#
+# Project: Lepton Streaming and recording with Flask
+# Author: lorenzo [at] karavania [dot] com>
+# Date: 2016/11/2
+# Website: http://karavania.com
+#*/
 
 #include<stdio.h>
 #include<signal.h>
