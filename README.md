@@ -14,3 +14,6 @@ add the HeatMap to the image.
 1. Install Python dependencies: cv2, flask, mraa.
 2. Run the python code.
 3. Navigate the browser to the local webpage.
+
+
+![alt tag](https://github.com/lollokara/UP-Lepton/raw/master/Test1.png)
