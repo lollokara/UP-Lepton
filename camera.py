@@ -18,7 +18,6 @@ class VideoCamera(object):
         process = subprocess.Popen(bashCommand.split(), stdout=subprocess.PIPE)
         output, error = process.communicate()
         #print(output)
-
         image = cv2.imread("frameResized.png")
         with open('image.txt') as f:
             for line in f:
@@ -33,16 +32,4 @@ class VideoCamera(object):
         cv2.circle(image, maxLoc, 10, (255, 255, 255), 3)
         PixelTemp=round(PixelTemp,2)
         cv2.putText(image,str(PixelTemp)+"C",(680,590),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
-        ret, jpeg = cv2.imencode('.png', image)
-        return jpeg.tostring()
-
-
-def normalize(arr):
-    arr = arr.astype('float')
-    # Do not touch the alpha channel
-    minval = arr[...,0].min()
-    maxval = arr[...,0].max()
-    if minval != maxval:
-        arr[...,0] -= minval
-        arr[...,0] *= (255.0/(maxval-minval))
-    return arr
+        return image
