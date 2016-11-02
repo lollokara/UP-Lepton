@@ -41,6 +41,7 @@ def record():
     while True:
         render_template('rec.html')
         frame = camera.get_frame()
+        print("loooooooping")
         video.write(frame)
         if request.method == 'POST':
             break
