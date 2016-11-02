@@ -35,7 +35,7 @@ def video_feed():
 def record():
     camera=VideoCamera()
     frame = camera.get_frame()
-    height , width , layers =  img1.shape
+    height , width , layers =  frame.shape
     video = cv2.VideoWriter('video.avi',CV_FOURCC('3','I','V','D'),5,(width,height))
     render_template('rec.html')
     while True:
