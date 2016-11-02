@@ -31,7 +31,7 @@ def gen(camera):
 def video_feed():
     return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
-@app.route('/index',methods = ['POST', 'GET'])
+@app.route('/index')
 def rec():
     return render_template('rec.html')
 
@@ -46,9 +46,8 @@ def record():
         print("loooooooping")
         video.write(frame)
         if request.method == 'POST':
-            return("shit got real")
-            break
-#video.release()
+            video.release()
+            return render_template("index.html")
 
 
 if __name__ == '__main__':
