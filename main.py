@@ -45,7 +45,7 @@ def record():
         frame = camera.get_frame()
         print("loooooooping")
         video.write(frame)
-        if request.method == 'POST':
+        if request.method == 'GET':
             video.release()
             return render_template("index.html")
 
