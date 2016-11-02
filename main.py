@@ -40,7 +40,7 @@ def record():
     video = cv2.VideoWriter('video.avi',fourcc,5,(800,600))
     print("recording")
     ledstate=0
-    led=mraa.Gpio(4)
+    led=mraa.Gpio(14)
     led.dir(mraa.DIR_OUT)
     while True:
         if ledstate == 0:
