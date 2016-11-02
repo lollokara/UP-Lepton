@@ -7,7 +7,7 @@
 #
 
 
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, Response,redirect, url_for, request
 from camera import VideoCamera
 from PIL import Image
 import subprocess
