@@ -31,20 +31,22 @@ def gen(camera):
 def video_feed():
     return Response(gen(VideoCamera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+@app.route('/index',methods = ['POST', 'GET'])
+def rec():
+    return render_template('rec.html')
+
 @app.route('/rec',methods = ['POST', 'GET'])
 def record():
     camera=VideoCamera()
     frame = camera.get_frame()
-    render_template('rec.html')
     fourcc = cv2.cv.CV_FOURCC('M','J','P','G')
     video = cv2.VideoWriter('video.avi',fourcc,5,(800,600))
     while True:
-        render_template('rec.html')
         frame = camera.get_frame()
         print("loooooooping")
         video.write(frame)
         if request.method == 'POST':
-            print("shit got real")
+            return("shit got real")
             break
 #video.release()
 
